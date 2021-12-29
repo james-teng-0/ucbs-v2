@@ -3,8 +3,8 @@ import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'; 
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import fragment from "./assets/fragment.glsl";
-import vertex from "./assets/vertexParticles.glsl";
+import fragment from "./fragment.glsl";
+import vertex from "./vertexParticles.glsl";
 
 // ******************************************************** SCENE SETUP ******************************************************************************
 const scene = new THREE.Scene(); // container for threejs objects
@@ -53,7 +53,7 @@ const decoder = new DRACOLoader().setDecoderPath('https://www.gstatic.com/draco/
 loader.setDRACOLoader(decoder);
 
 var dnaShape;
-loader.load('./assets/dna.glb', 
+loader.load('./dna.glb', 
   // called when resource is loaded
   (gltf) => {
     const geometry = gltf.scene.children[0].geometry;
