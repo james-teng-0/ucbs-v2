@@ -1,10 +1,9 @@
 import './style.css'
 import * as THREE from "three"
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'; 
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import fragment from "./fragment.glsl";
-import vertex from "./vertexParticles.glsl";
+import fragment from "./assets/fragment.glsl";
+import vertex from "./assets/vertexParticles.glsl";
 
 // ******************************************************** SCENE SETUP ******************************************************************************
 const scene = new THREE.Scene(); // container for threejs objects
@@ -25,27 +24,50 @@ pointLight.position.setZ(40);
 const ambientLight = new THREE.AmbientLight(0xffffff, 2);
 scene.add(ambientLight, pointLight);
 
-// ********************************************************* COIN ******************************************************************************
+// ********************************************************* BITCOIN ******************************************************************************
 const bitcoinColour = new THREE.TextureLoader().load('./bitcoin.png');
 const normal = new THREE.TextureLoader().load('./bitcoin-normal.png');
 
-const geometry = new THREE.CylinderGeometry( 20, 20, 2, 64 );
-const material = new THREE.MeshStandardMaterial({
+const bitcoinGeometry = new THREE.CylinderGeometry( 5, 5, 0.5, 64 );
+const bitcoinMaterial = new THREE.MeshStandardMaterial({
     map: bitcoinColour,
+    normalMap: normal,
     metalness:0.7,
     roughness:0.3,
     wireframe:true,
 });
-const cylinder = new THREE.Mesh( geometry, material );
-cylinder.position.setX(20);
-cylinder.position.setY(5);
-cylinder.position.setZ(-10);
+const bitcoin = new THREE.Mesh( bitcoinGeometry, bitcoinMaterial );
+bitcoin.position.setX(40);
+bitcoin.position.setY(5);
+bitcoin.position.setZ(-10);
 
-cylinder.rotateX(23);
-cylinder.rotateY(14);
-cylinder.rotateZ(170);
+bitcoin.rotateX(23);
+bitcoin.rotateY(14);
+bitcoin.rotateZ(170);
 
-scene.add( cylinder );  
+scene.add( bitcoin );  
+
+// ********************************************************* ETH ******************************************************************************
+const ethColour = new THREE.TextureLoader().load('./eth.png');
+
+const ethGeometry = new THREE.CylinderGeometry( 5, 5, 0.5, 64 );
+const ethMaterial = new THREE.MeshStandardMaterial({
+    map: ethColour,
+    metalness:0.7,
+    roughness:0.3,
+    wireframe:true,
+});
+
+const ethCoin = new THREE.Mesh( ethGeometry, ethMaterial );
+ethCoin.position.setX(50);
+ethCoin.position.setY(-5);
+ethCoin.position.setZ(-10);
+
+ethCoin.rotateX(23);
+ethCoin.rotateY(14);
+ethCoin.rotateZ(170);
+
+scene.add( ethCoin );  
 
 // ********************************************************* PARTICLE SYSTEM ******************************************************************************
 const loader = new GLTFLoader();
@@ -91,17 +113,19 @@ loader.load('./dna.glb',
 		scene.add( dnaShape );
 
     // ******************************************************** ANIMATION LOOP *****************************
-    const controls = new OrbitControls( camera, renderer.domElement );
 
 
     function animate() {
         requestAnimationFrame(animate);
 
-        cylinder.rotation.y += 0.00009;
-        cylinder.rotation.x += 0.00009;
-        dnaShape.rotation.y += 0.0009;
+        ethCoin.rotation.x -= 0.0005;
+        ethCoin.rotation.y -= 0.0005;
 
-        controls.update();
+        bitcoin.rotation.x += 0.0009;
+        bitcoin.rotation.y += 0.0009;
+
+        dnaShape.rotation.y += 0.0001;
+
         renderer.render(scene, camera);
     }
       
