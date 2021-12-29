@@ -19,26 +19,25 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(40);
 
 const pointLight = new THREE.PointLight(0xffffff, 2);
-pointLight.position.setZ(40);
+pointLight.position.set(30, 20, 20);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 3);
 scene.add(ambientLight, pointLight);
 
 // ********************************************************* BITCOIN ******************************************************************************
 const bitcoinColour = new THREE.TextureLoader().load('./bitcoin.png');
-const normal = new THREE.TextureLoader().load('./bitcoin-normal.png');
 
-const bitcoinGeometry = new THREE.CylinderGeometry( 5, 5, 0.5, 64 );
+const bitcoinGeometry = new THREE.CylinderGeometry( 4, 4, 0.5, 64 );
 const bitcoinMaterial = new THREE.MeshStandardMaterial({
     map: bitcoinColour,
-    normalMap: normal,
     metalness:0.7,
     roughness:0.3,
     wireframe:true,
 });
 const bitcoin = new THREE.Mesh( bitcoinGeometry, bitcoinMaterial );
-bitcoin.position.setX(40);
-bitcoin.position.setY(5);
+bitcoin.position.setX(42);
+bitcoin.position.setY(25);
 bitcoin.position.setZ(-10);
 
 bitcoin.rotateX(23);
@@ -50,7 +49,7 @@ scene.add( bitcoin );
 // ********************************************************* ETH ******************************************************************************
 const ethColour = new THREE.TextureLoader().load('./eth.png');
 
-const ethGeometry = new THREE.CylinderGeometry( 5, 5, 0.5, 64 );
+const ethGeometry = new THREE.CylinderGeometry( 4, 4  , 0.5, 64 );
 const ethMaterial = new THREE.MeshStandardMaterial({
     map: ethColour,
     metalness:0.7,
@@ -59,8 +58,8 @@ const ethMaterial = new THREE.MeshStandardMaterial({
 });
 
 const ethCoin = new THREE.Mesh( ethGeometry, ethMaterial );
-ethCoin.position.setX(50);
-ethCoin.position.setY(-5);
+ethCoin.position.setX(20);
+ethCoin.position.setY(-17);
 ethCoin.position.setZ(-10);
 
 ethCoin.rotateX(23);
@@ -109,7 +108,9 @@ loader.load('./dna.glb',
 
 
 		dnaShape = new THREE.Points( geometry, material );
-    dnaShape.position.setZ(30)
+    dnaShape.position.setX(5)
+    dnaShape.position.setY(2)
+    dnaShape.position.setZ(32)
 		scene.add( dnaShape );
 
     // ******************************************************** ANIMATION LOOP *****************************
@@ -118,13 +119,13 @@ loader.load('./dna.glb',
     function animate() {
         requestAnimationFrame(animate);
 
-        ethCoin.rotation.x -= 0.0005;
-        ethCoin.rotation.y -= 0.0005;
+        ethCoin.rotation.x -= 0.00009;
+        ethCoin.rotation.y -= 0.00009;
 
-        bitcoin.rotation.x += 0.0009;
-        bitcoin.rotation.y += 0.0009;
+        bitcoin.rotation.x += 0.0001;
+        bitcoin.rotation.y += 0.0001;
 
-        dnaShape.rotation.y += 0.0001;
+        dnaShape.rotation.y += 0.00006;
 
         renderer.render(scene, camera);
     }
