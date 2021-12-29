@@ -83,9 +83,9 @@ loader.load('./dna.glb',
     const material = new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
       uniforms: {
-        uColor1: {value: new THREE.Color(0x612574)},
-        uColor2: {value: new THREE.Color(0x293583)},
-        uColor3: {value: new THREE.Color(0x1954ec)},
+        uColor1: {value: new THREE.Color(0x2a322e)},
+        uColor2: {value: new THREE.Color(0x212427)},
+        uColor3: {value: new THREE.Color(0x8D806F)},
         resolution: {value: new THREE.Vector4()}
       },
       transparent:true,
