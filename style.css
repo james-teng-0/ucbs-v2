@@ -4,21 +4,22 @@
   border: 0;
 }
 
-#bg {
-  position:absolute;
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-.intro-container {
-  display: flex;
-  align-items: center;
-  height: 80%;
+main {
   position:absolute;
-} 
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
 
 .intro {
-  width: 55%;
   display:block;
-  padding-left: 100px;
+  padding-top: 15vh;
+  grid-column: 3 / 8;
 }
 
 .main-logo {
@@ -37,3 +38,67 @@
   color: transparent;
   line-height: 80px;
 }
+
+strong {
+  color: #7d8bcc;
+  font-weight:normal;
+}
+
+section {
+  grid-column: 2 / 8;
+  padding: 1rem;
+  color: #c0c9df;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  height: 130vh;
+  box-sizing: border-box;
+}
+
+.scroll-container {
+  padding: 0;
+  text-decoration: none;
+  background: 0 0;
+  border: 0;
+  outline: 0;
+  position: absolute;
+  margin-top:90vh;
+  grid-column: 3;
+}
+
+.scroll-label {
+  margin-bottom: 1.625rem;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  color: #fff;
+  transition: opacity 1s;
+}
+
+.scroll-indicator {
+  width: .1875rem;
+  height: 5rem;
+  background-color: #b51244;
+  transform-origin: center center;
+  transform: translate(0px, 0px);
+  transition: height 1s;
+}
+
+.get-involved {
+  background: #6b7a99;
+  grid-column: 1/13;
+  height: 60vh;
+}
+
+footer {
+  background: black;
+  grid-column: 1/13;
+  height: 30vh;
+  bottom: 0;
+}
+
+.column {
+  width: 30%;
+  display: inline-block;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
